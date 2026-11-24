@@ -1,0 +1,218 @@
+.nav {
+  position: sticky;
+  z-index: 50;
+  top: 0;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.6rem, 2vw, 2rem);
+  min-height: var(--nav-h);
+  padding: 0 clamp(0.75rem, 2.4vw, 2.25rem);
+  border-bottom: 1px solid var(--chrome-border);
+  background: var(--ink);
+  color: var(--chalk);
+  box-shadow: var(--nav-shadow);
+}
+
+.nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+}
+
+.nav__mark {
+  display: grid;
+  place-items: center;
+  width: clamp(32px, 3vw, 38px);
+  aspect-ratio: 1;
+  border-radius: 10px;
+  background: var(--primary);
+  color: var(--primary-ink);
+  transform: rotate(-3deg);
+}
+
+.nav__brand-text {
+  display: grid;
+  gap: 0.05rem;
+}
+
+.nav__brand-text strong {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.nav__brand-text small {
+  font-size: 0.56rem;
+  letter-spacing: 0.14em;
+  color: var(--sage);
+}
+
+.nav__items {
+  display: flex;
+  align-items: stretch;
+  gap: 0.2rem;
+  height: var(--nav-h);
+  margin-left: auto;
+  min-width: 0;
+}
+
+.nav__item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  padding: 0 0.7rem;
+  border: 0;
+  background: none;
+  color: var(--sage);
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+
+.nav__item::after {
+  content: '';
+  position: absolute;
+  left: 0.7rem;
+  right: 0.7rem;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 300ms var(--ease);
+}
+
+.nav__item:hover,
+.nav__item--active {
+  color: var(--chalk);
+}
+
+.nav__item--active::after {
+  transform: scaleX(1);
+}
+
+.nav__code {
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  color: var(--primary-bright);
+}
+
+.nav__label-short {
+  display: none;
+}
+
+.nav__theme {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+  margin-left: 0.25rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--chrome-border);
+  border-radius: var(--r-pill);
+  background: var(--chrome-field);
+  color: var(--chrome-text);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  transition: border-color 200ms ease, background 200ms ease;
+}
+
+.nav__theme:hover {
+  border-color: var(--primary);
+}
+
+.nav__theme-track {
+  position: relative;
+  display: block;
+  width: 28px;
+  height: 14px;
+  border: 1px solid var(--chrome-border);
+  border-radius: var(--r-pill);
+  background: var(--chrome-field);
+}
+
+.nav__theme-track i {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  transition: transform 240ms var(--ease), background 240ms var(--ease);
+}
+
+.nav__theme[aria-pressed='true'] .nav__theme-track i {
+  background: var(--secondary);
+  transform: translateX(14px);
+}
+
+.nav__signal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  color: var(--sage);
+}
+
+.nav__signal i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--moss-bright);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--moss-bright) 18%, transparent);
+}
+
+@media (max-width: 1180px) {
+  .nav__signal { display: none; }
+}
+
+@media (max-width: 900px) {
+  .nav {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.7rem;
+    padding-block: 0.4rem;
+  }
+  .nav__brand-text small { display: none; }
+  .nav__theme { margin-left: auto; }
+  .nav__items {
+    order: 3;
+    flex: 1 1 100%;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .nav__item {
+    flex: 1 1 auto;
+    justify-content: center;
+    min-height: 36px;
+    padding: 0.3rem 0.4rem;
+    font-size: 0.72rem;
+  }
+  .nav__item::after { left: 0.4rem; right: 0.4rem; }
+}
+
+@media (max-width: 700px) {
+  .nav__brand-text { display: none; }
+  .nav__label-full { display: none; }
+  .nav__label-short { display: inline; }
+  .nav__theme > span:last-child { display: none; }
+  .nav__theme { padding: 0.35rem; }
+  .nav__code { display: none; }
+  .nav__item { font-size: 0.7rem; }
+}

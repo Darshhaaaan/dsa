@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" data-theme="cherry">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f2f7f9" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content="DSA Guru — a self-contained, interactive field guide to pathfinding, sorting, stacks and queues." />
+    <title>DSA Guru — Algorithms in Motion</title>
+    <script>
+      try {
+        var saved = localStorage.getItem('dsa-guru-theme');
+        var theme = saved === 'orchid' || saved === 'cherry' ? saved : 'cherry';
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'orchid' ? '#EFEFEF' : '#f2f7f9');
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

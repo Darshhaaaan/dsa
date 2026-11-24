@@ -1,0 +1,18 @@
+.hud-panel--moss .panel-head__code,
+.hud-panel--moss .section-heading__index { color: var(--moss); }
+
+.hud-panel--saffron .panel-head__code { color: var(--saffron); }
+.hud-panel--plum .panel-head__code { color: var(--plum); }
+
+.hud-panel--dark.hud-panel--saffron .panel-head__code { color: var(--saffron-bright); }
+.hud-panel--dark.hud-panel--plum .panel-head__code { color: var(--plum-bright); }
+.hud-panel--dark.hud-panel--moss .panel-head__code { color: var(--moss-bright); }
+
+.section-heading--plum .section-heading__index {
+  border-color: var(--plum);
+  color: var(--plum);
+}
+
+.section-heading__title {
+  color: var(--text);
+}

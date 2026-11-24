@@ -1,0 +1,180 @@
+.pf__panel {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.pf__generate {
+  width: 100%;
+  min-height: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pf__tools {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+
+.pf__tools .btn {
+  min-width: 0;
+  padding-inline: 0.4rem;
+  font-size: 0.72rem;
+}
+
+.pf__hint {
+  margin: 0;
+  font-size: 0.625rem;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  color: var(--chrome-muted);
+}
+
+.pf__stage {
+  min-height: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+.pf__stage-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.35rem 1rem;
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.pf__found { color: var(--moss); }
+
+.pf__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  gap: 2px;
+  width: 100%;
+  max-width: 980px;
+  margin-inline: auto;
+  padding: clamp(5px, 0.8vw, 8px);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  touch-action: pan-y;
+}
+
+.pf-cell {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  min-width: 0;
+  padding: 0;
+  border: 1px solid var(--cell-idle-border);
+  border-radius: 2px;
+  background: var(--cell-idle);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: clamp(0.45rem, 0.9vw, 0.7rem);
+  line-height: 1;
+  transition: background 180ms var(--ease), border-color 180ms var(--ease), transform 180ms var(--ease);
+}
+
+.pf-cell:hover { border-color: var(--primary); }
+
+.pf-cell--wall {
+  border-color: var(--cell-wall-border);
+  background: repeating-linear-gradient(135deg, var(--cell-wall-a) 0 4px, var(--cell-wall-b) 4px 8px);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cell-wall-border) 40%, transparent);
+}
+
+.pf-cell--open {
+  border-color: var(--cell-open-border);
+  background: var(--cell-open);
+}
+
+.pf-cell--closed {
+  border-color: var(--cell-visited-border);
+  background: var(--cell-visited);
+}
+
+.pf-cell--current {
+  border-color: var(--cell-current);
+  background: var(--cell-current);
+  color: var(--cell-current-ink);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--cell-current) 28%, transparent);
+  transform: scale(1.08);
+}
+
+.pf-cell--path {
+  border-color: var(--cell-path);
+  background: var(--cell-path);
+  color: var(--cell-path-ink);
+  animation: pf-pop 260ms var(--ease) both;
+}
+
+.pf-cell--start,
+.pf-cell--goal {
+  border-color: var(--cell-path);
+  background: var(--cell-path);
+  color: var(--cell-path-ink);
+  font-size: clamp(0.5rem, 1vw, 0.8rem);
+  font-weight: 700;
+}
+
+.pf-cell--goal {
+  border-color: var(--secondary-strong);
+  background: var(--secondary-pale);
+  color: var(--secondary-ink);
+}
+
+.pf-cell--path.pf-cell--start,
+.pf-cell--path.pf-cell--goal {
+  animation: none;
+}
+
+.pf__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.2rem;
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.pf__legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pf__swatch {
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+}
+
+.pf__swatch--open { background: var(--cell-open); border-color: var(--cell-open-border); }
+.pf__swatch--closed { background: var(--cell-visited); border-color: var(--cell-visited-border); }
+.pf__swatch--path { background: var(--cell-path); border-color: var(--cell-path); }
+.pf__swatch--wall {
+  border-color: var(--cell-wall-border);
+  background: repeating-linear-gradient(135deg, var(--cell-wall-a) 0 3px, var(--cell-wall-b) 3px 6px);
+}
+
+@keyframes pf-pop {
+  from { transform: scale(0.5); opacity: 0.4; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 560px) {
+  .pf__stage-head { font-size: 0.58rem; }
+  .pf__legend { font-size: 0.58rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-cell,
+  .pf-cell--path { animation-duration: 1ms; transition-duration: 1ms; }
+}

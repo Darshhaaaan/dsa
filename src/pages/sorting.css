@@ -1,0 +1,125 @@
+.sorting__panel {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.sorting__size-label {
+  margin-top: 0.4rem;
+}
+
+.sorting__actions {
+  display: grid;
+}
+
+.sorting__complexity {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.sorting__complexity div {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--line-dark);
+  border-radius: var(--r-xs);
+}
+
+.sorting__complexity strong {
+  font-size: 0.88rem;
+  color: var(--primary-bright);
+  overflow-wrap: anywhere;
+}
+
+.sorting__stage {
+  min-height: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+.sorting__stage-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.35rem 1rem;
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.sorting__sorted {
+  color: var(--moss);
+  font-weight: 600;
+}
+
+.sorting__bars {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(1px, 0.2vw, 2px);
+  width: 100%;
+  min-height: clamp(240px, 42vh, 460px);
+  padding: clamp(0.7rem, 1.5vw, 1.2rem);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background:
+    linear-gradient(to top, color-mix(in srgb, var(--secondary) 12%, transparent), transparent 45%),
+    var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.sort-bar-slot {
+  display: flex;
+  align-items: flex-end;
+  flex: 1 1 0;
+  min-width: 1px;
+}
+
+.sort-bar {
+  width: 100%;
+  height: calc(var(--h) * 100%);
+  min-height: 2px;
+  border-radius: 3px 3px 0 0;
+  background: var(--bar-idle);
+  transition: height 90ms linear, background 180ms ease;
+}
+
+.sort-bar--active { background: var(--bar-active); }
+.sort-bar--done { background: var(--bar-done); }
+
+.sorting__stats {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.sorting__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.2rem;
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.sorting__legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.sorting__swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.sorting__swatch--active { background: var(--bar-active); }
+.sorting__swatch--done { background: var(--bar-done); }
+.sorting__swatch--idle { background: var(--bar-idle); }
+
+@media (max-width: 560px) {
+  .sorting__stage-head,
+  .sorting__legend { font-size: 0.58rem; }
+  .sorting__complexity { grid-template-columns: 1fr; }
+}
